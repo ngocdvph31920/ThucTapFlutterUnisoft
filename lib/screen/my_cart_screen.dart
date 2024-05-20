@@ -1,7 +1,10 @@
 import 'package:ecommerce_app/model/product.dart';
 import 'package:ecommerce_app/login/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../login/bloc/login_bloc.dart';
 
 class MyCart extends StatefulWidget {
   const MyCart({super.key});
@@ -17,6 +20,46 @@ class _MyCartState extends State<MyCart> {
       backgroundColor: Colors.white,
       body: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 25,
+              right: 25,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 50),
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: SvgPicture.asset(
+                        width: 24,
+                        'assets/icons/back.svg',
+                      ),
+                    ),
+                    Expanded(child: Container()),
+                    const Text(
+                      'My Cart',
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const Spacer(),
+                    SvgPicture.asset(
+                      width: 24,
+                      'assets/icons/notification.svg',
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
@@ -25,41 +68,10 @@ class _MyCartState extends State<MyCart> {
                   right: 25,
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 50),
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child:SvgPicture.asset(
-                            width: 24,
-                            'assets/icons/back.svg',
-                          ),
-                        ),
-                        Expanded(child: Container()),
-                        const Text(
-                          'My Cart',
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const Spacer(),
-                        SvgPicture.asset(
-                          width: 24,
-                          'assets/icons/notification.svg',
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    const SizedBox(height: 10),
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      height: 365,
+                      height: 350,
                       child: ListView.builder(
                         padding: EdgeInsets.zero,
                         scrollDirection: Axis.vertical,
@@ -67,24 +79,23 @@ class _MyCartState extends State<MyCart> {
                         itemBuilder: (BuildContext context, int index) {
                           final cart = listProductCart[index];
                           return Padding(
-                            padding: const EdgeInsets.only(bottom: 17),
+                            padding: const EdgeInsets.only(bottom: 15),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 103,
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                color: const Color(0XFFF2F2F2),
-                                borderRadius:
-                                    BorderRadius.circular(12), // Bo góc 12
+                                color: const Color(0XFFF2F2F2).withOpacity(1),
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               child: Row(
                                 children: [
                                   Container(
                                     width: 83,
-                                    height: 89,
+                                    height: 79,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(color:  const Color(0XFF000000).withOpacity(0.05)),
+                                      border: Border.all(color: const Color(0XFF000000).withOpacity(0.05)),
                                     ),
                                     child: Image.asset(
                                       'assets/images/${cart.image}',
@@ -103,8 +114,8 @@ class _MyCartState extends State<MyCart> {
                                       ),
                                       Text(
                                         'Size ${cart.size}',
-                                        style: const TextStyle(
-                                          color: Colors.black54,
+                                        style: TextStyle(
+                                          color: const Color(0XFF000000).withOpacity(0.6),
                                           fontSize: 13,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -114,14 +125,12 @@ class _MyCartState extends State<MyCart> {
                                         'PKR ${cart.price}',
                                         style: const TextStyle(
                                           fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
+                                          fontWeight: FontWeight.w700,
+                                          color: Color(0XFF000000),
                                         ),
                                       ),
                                     ],
                                   ),
-
-
                                   Expanded(child: Container()),
                                   Column(
                                     children: [
@@ -138,8 +147,7 @@ class _MyCartState extends State<MyCart> {
                                             width: 22,
                                             height: 22,
                                             decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
+                                              borderRadius: BorderRadius.circular(4),
                                               border: Border.all(
                                                 color: const Color(0XFF000000).withOpacity(0.2),
                                               ),
@@ -167,8 +175,7 @@ class _MyCartState extends State<MyCart> {
                                             width: 22,
                                             height: 22,
                                             decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
+                                              borderRadius: BorderRadius.circular(4),
                                               border: Border.all(
                                                 color: const Color(0XFF000000).withOpacity(0.2),
                                               ),
@@ -199,27 +206,29 @@ class _MyCartState extends State<MyCart> {
                       height: 53,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color:  const Color(0XFF000000).withOpacity(0.05),
+                        color: const Color(0XFF000000).withOpacity(0.05),
                       ),
-                      child:  TextField(
+                      child: TextField(
                         decoration: InputDecoration(
                           hintText: 'Add a voucher',
                           border: InputBorder.none,
                           isDense: true,
                           contentPadding: const EdgeInsets.all(15),
-                          hintStyle:
-                              TextStyle(fontSize: 17, color:  const Color(0XFF000000).withOpacity(0.6)),
+                          hintStyle: TextStyle(
+                            fontSize: 17,
+                            color: const Color(0XFF000000).withOpacity(0.6),
+                          ),
                         ),
                         style: const TextStyle(fontSize: 17),
                       ),
                     ),
-                    const SizedBox(height: 35),
+                    const SizedBox(height: 30),
                     Row(
                       children: [
-                        const Text(
+                         Text(
                           'Sub-total',
                           style: TextStyle(
-                            color: Colors.black54,
+                            color:const Color(0XFF000000).withOpacity(0.6),
                             fontSize: 17,
                             fontWeight: FontWeight.w500,
                           ),
@@ -229,71 +238,71 @@ class _MyCartState extends State<MyCart> {
                           'PKR 1,190',
                           style: TextStyle(
                             fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0XFF000000),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 17),
-                    const Row(
+                    const SizedBox(height: 15),
+                    Row(
                       children: [
                         Text(
                           'VAT (%)',
                           style: TextStyle(
-                            color: Colors.black54,
+                            color:const Color(0XFF000000).withOpacity(0.6),
                             fontSize: 17,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        Spacer(),
-                        Text(
+                        const Spacer(),
+                        const Text(
                           'PKR 0.00',
                           style: TextStyle(
                             fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0XFF000000),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 17),
-                    const Row(
+                    const SizedBox(height: 15),
+                    Row(
                       children: [
                         Text(
                           'Shipping fee',
                           style: TextStyle(
-                            color: Colors.black54,
+                            color: const Color(0XFF000000).withOpacity(0.6),
                             fontSize: 17,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        Spacer(),
-                        Text(
+                        const Spacer(),
+                        const Text(
                           'PKR 80',
                           style: TextStyle(
                             fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0XFF000000),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 27),
+                    const SizedBox(height: 25),
                     SizedBox(
                       height: 1,
                       width: double.infinity,
                       child: Container(
-                        color: Colors.black45,
+                        color: const Color(0XFF000000).withOpacity(0.2),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 15),
                     Row(
                       children: [
                         const Text(
                           'Total',
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Color(0XFF000000),
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
                           ),
@@ -303,13 +312,12 @@ class _MyCartState extends State<MyCart> {
                           'PKR 5,950',
                           style: TextStyle(
                             fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0XFF000000),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 15),
                   ],
                 ),
               ),
@@ -319,7 +327,7 @@ class _MyCartState extends State<MyCart> {
             height: 101,
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
+                border: Border.all(color:const Color(0XFF000000).withOpacity(0.2)),
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -331,9 +339,12 @@ class _MyCartState extends State<MyCart> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) {
-                          return const LoginScreen();
-                        }),
+                        MaterialPageRoute(
+                          builder: (context) => BlocProvider(
+                            create: (BuildContext context) => LoginBloc(),
+                            child: const LoginScreen(),
+                          ),
+                        ),
                       );
                     },
                     style: ButtonStyle(
@@ -346,22 +357,20 @@ class _MyCartState extends State<MyCart> {
                       ),
                       shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "Checkout",
                           style: TextStyle(
                             fontSize: 20,
                             color: Colors.white,
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 15),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                          ),
+                        const SizedBox(width: 15),
+                        SvgPicture.asset(
+                          'assets/icons/arrow.svg',
+                          width: 24,
                         ),
                       ],
                     ),
@@ -370,7 +379,6 @@ class _MyCartState extends State<MyCart> {
               ),
             ),
           ),
-
         ],
       ),
     );

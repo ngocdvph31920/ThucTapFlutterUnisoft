@@ -2,6 +2,7 @@ import 'package:ecommerce_app/login/bloc/login_bloc.dart';
 import 'package:ecommerce_app/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -81,20 +82,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       shadowColor:
                           MaterialStateProperty.all<Color>(Colors.transparent),
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "Get Started ",
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.white,
                           ),
                         ),
-                        SizedBox(width: 15),
-                        Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
+                        const SizedBox(width: 15),
+                        SvgPicture.asset(
+                          'assets/icons/arrow.svg',
+                           width: 24,
                         ),
                       ],
                     ),

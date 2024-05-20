@@ -25,221 +25,236 @@ class _DetailsState extends State<Details> {
       body: Column(
         children: [
           Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 25,
-                  right: 25,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 50),
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: SvgPicture.asset(
-                            width: 24,
-                            'assets/icons/back.svg',
-                          ),
-                        ),
-                        Expanded(child: Container()),
-                        const Text(
-                          'Details',
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        Expanded(child: Container()),
-                        SvgPicture.asset(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 25,
+                right: 25,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 50),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: SvgPicture.asset(
                           width: 24,
-                          'assets/icons/notification.svg',
+                          'assets/icons/back.svg',
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 7),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 368.53,
-                      child: Image.asset('assets/images/Frame16.png'),
-                    ),
-                    const SizedBox(height: 26),
-                    const Text(
-                      'Regular fit slogan',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 26,
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: Image.asset('assets/images/icon.png'),
+                      Expanded(child: Container()),
+                      const Text(
+                        'Details',
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.w700,
                         ),
-                        const SizedBox(height: 7),
-                        RichText(
-                          text: const TextSpan(
-                            text: '4.5/5 ',
-                            style: TextStyle(
-                              fontSize: 17,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                        textAlign: TextAlign.center,
+                      ),
+                      Expanded(child: Container()),
+                      SvgPicture.asset(
+                        width: 24,
+                        'assets/icons/notification.svg',
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 7),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            height: 368.53,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: Colors.transparent,
+                              ),
                             ),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: '(45 reviews)',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.bold,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                'assets/images/detailproduct.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 19),
+                          const Text(
+                            'Regular fit slogan',
+                            style: TextStyle(
+                              color: Color(0XFF000000),
+                              fontWeight: FontWeight.w700,
+                              fontSize: 26,
+                            ),
+                          ),
+                          const SizedBox(height: 6.47),
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                width: 24,
+                                'assets/icons/hear.svg',
+                              ),
+                              const SizedBox(width: 3),
+                              RichText(
+                                text:  TextSpan(
+                                  text: '4.5/5 ',
+                                  style: const TextStyle(
+                                    fontSize: 17,
+                                    color: Color(0XFF000000),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: '(45 reviews)',
+                                      style: TextStyle(
+                                        fontSize: 17,
+                                        color:   const Color(0XFF000000).withOpacity(0.6),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    const SizedBox(
-                      width: double.infinity,
-                      height: 79,
-                      child: Text(
-                        'The name says it all, the right size slightly snugs the'
-                        ' body leaving enough room for comfort in the sleeves'
-                        ' and waist.',
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 14.5,
-                          height: 1.9,
-                        ),
+                          const SizedBox(height: 27.51),
+                         Text(
+                            'The name says it all, the right size slightly snugs the'
+                                ' body leaving enough room for comfort in the sleeves'
+                                ' and waist.',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              color:   const Color(0XFF000000).withOpacity(0.6),
+                              fontSize: 15.5,
+                              height: 1.9,
+                            ),
+                          ),
+                          const SizedBox(height: 25.84),
+                          const Text(
+                            'Choose size',
+                            style: TextStyle(
+                              color: Color(0XFF000000),
+                              fontWeight: FontWeight.w700,
+                              fontSize: 24,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  _changeSizeProduct('S');
+                                },
+                                child: SizedBox(
+                                  width: 55.0,
+                                  height: 60.0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      border: Border.all(
+                                        color:  const Color(0XFF000000).withOpacity(0.2),
+                                        width: 1.0,
+                                      ),
+                                      color: _sizeProduct == 'S'
+                                          ? const Color(0XFF000000)
+                                          : const Color(0XFFFFFFFF),
+                                    ),
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Text(
+                                      'S',
+                                      style: TextStyle(
+                                        fontSize: 25.0,
+                                        fontWeight: FontWeight.w500,
+                                        color: _sizeProduct != 'S'
+                                            ? const Color(0XFF000000)
+                                            : const Color(0XFFFFFFFF),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              GestureDetector(
+                                onTap: () {
+                                  _changeSizeProduct('M');
+                                },
+                                child: SizedBox(
+                                  width: 55.0,
+                                  height: 60.0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      border: Border.all(
+                                        color: const Color(0XFF000000).withOpacity(0.2),
+                                        width: 1.0,
+                                      ),
+                                      color: _sizeProduct == 'M'
+                                          ? const Color(0XFF000000)
+                                          : const Color(0XFFFFFFFF),
+                                    ),
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Text(
+                                      'M',
+                                      style: TextStyle(
+                                        fontSize: 25.0,
+                                        fontWeight: FontWeight.w500,
+                                        color: _sizeProduct != 'M'
+                                            ? const Color(0XFF000000)
+                                            : const Color(0XFFFFFFFF),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              GestureDetector(
+                                onTap: () {
+                                  _changeSizeProduct('L');
+                                },
+                                child: SizedBox(
+                                  width: 55.0,
+                                  height: 60.0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      border: Border.all(
+                                        color: const Color(0XFF000000).withOpacity(0.2),
+                                        width: 1.0,
+                                      ),
+                                      color: _sizeProduct == 'L'
+                                          ? const Color(0XFF000000)
+                                          : const Color(0XFFFFFFFF),
+                                    ),
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Text(
+                                      'L',
+                                      style: TextStyle(
+                                        fontSize: 25.0,
+                                        fontWeight: FontWeight.w500,
+                                        color: _sizeProduct != 'L'
+                                            ? const Color(0XFF000000)
+                                            : const Color(0XFFFFFFFF),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 15),
-                    const Text(
-                      'Choose size',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            _changeSizeProduct('S');
-                          },
-                          child: SizedBox(
-                            width: 55.0,
-                            height: 60.0,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                border: Border.all(
-                                  color: Colors.black45,
-                                  width: 1.0,
-                                ),
-                                color: _sizeProduct == 'S'
-                                    ? Colors.black
-                                    : Colors.white,
-                              ),
-                              padding: const EdgeInsets.all(12.0),
-                              child: Text(
-                                'S',
-                                style: TextStyle(
-                                  fontSize: 24.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: _sizeProduct != 'S'
-                                      ? Colors.black
-                                      : Colors.white,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        GestureDetector(
-                          onTap: () {
-                            _changeSizeProduct('M');
-                          },
-                          child: SizedBox(
-                            width: 55.0,
-                            height: 60.0,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                border: Border.all(
-                                  color: Colors.black45,
-                                  width: 1.0,
-                                ),
-                                color: _sizeProduct == 'M'
-                                    ? Colors.black
-                                    : Colors.white,
-                              ),
-                              padding: const EdgeInsets.all(12.0),
-                              child: Text(
-                                'M',
-                                style: TextStyle(
-                                  fontSize: 24.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: _sizeProduct != 'M'
-                                      ? Colors.black
-                                      : Colors.white,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        GestureDetector(
-                          onTap: () {
-                            _changeSizeProduct('L');
-                          },
-                          child: SizedBox(
-                            width: 55.0,
-                            height: 60.0,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                border: Border.all(
-                                  color: Colors.black45,
-                                  width: 1.0,
-                                ),
-                                color: _sizeProduct == 'L'
-                                    ? Colors.black
-                                    : Colors.white,
-                              ),
-                              padding: const EdgeInsets.all(12.0),
-                              child: Text(
-                                'L',
-                                style: TextStyle(
-                                  fontSize: 24.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: _sizeProduct != 'L'
-                                      ? Colors.black
-                                      : Colors.white,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -247,7 +262,7 @@ class _DetailsState extends State<Details> {
             height: 101,
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
+                border: Border.all(color: const Color(0XFF000000).withOpacity(0.2)),
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -257,7 +272,7 @@ class _DetailsState extends State<Details> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Expanded(
+                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -266,15 +281,16 @@ class _DetailsState extends State<Details> {
                             'Price',
                             style: TextStyle(
                               fontSize: 21,
-                              color: Colors.black54,
+                              fontWeight: FontWeight.w500,
+                              color: const Color(0XFF000000).withOpacity(0.6),
                             ),
                           ),
-                          Text(
+                          const Text(
                             'PKR 1,190',
                             style: TextStyle(
                               fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              color:  Color(0XFF000000),
                             ),
                           ),
                         ],
