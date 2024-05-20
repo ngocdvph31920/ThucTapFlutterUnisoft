@@ -1,18 +1,18 @@
 import 'package:equatable/equatable.dart';
 
-class RegisterState extends Equatable {
-  const RegisterState({
-    required this.registerStatus,
+class LoginState extends Equatable {
+  const LoginState({
+    required this.loginStatus,
   });
 
-  final String registerStatus;
+  final String loginStatus;
 
-  RegisterState checkregister({String? status}) {
-    return RegisterState(
-      registerStatus: status ?? '',
+  LoginState checklogin({String? status}) {
+    return LoginState(
+      loginStatus: status ?? '',
     );
   }
 
   @override
-  List<Object> get props => [registerStatus];
+  List<Object> get props => [loginStatus];
 }

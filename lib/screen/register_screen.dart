@@ -28,7 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       required String password,
       required String email}) {
     registerBloc.add(
-      RegisterFirebaseEvent(fullName, email, password),
+      LoginFirebaseEvent(fullName, email, password),
     );
   }
 
@@ -48,9 +48,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginBloc, RegisterState>(
+    return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) => {
-        if (state.registerStatus == 'OK')
+        if (state.loginStatus == 'OK')
           {
             Navigator.push(
               context,
