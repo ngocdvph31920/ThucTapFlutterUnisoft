@@ -16,56 +16,56 @@ class Product {
 
 List<Product> listProductFake = [
   Product(
-    image: 'image1.png',
+    image: 'anh1.png',
     title: 'Regular fit slogan',
     size: 'L',
     price: 1190,
     quantity: 1,
   ),
   Product(
-    image: 'image2.png',
+    image: 'anh2.png',
     title: 'Regular fit polo',
     size: 'M',
     price: 1170,
     quantity: 1,
   ),
   Product(
-    image: 'image3.png',
+    image: 'anh3.png',
     title: 'Regular fit color block',
     size: 'S',
     price: 1366,
     quantity: 1,
   ),
   Product(
-    image: 'image4.png',
+    image: 'anh4.png',
     title: 'Regular fit v-neck',
     size: 'M',
     price: 1199,
     quantity: 1,
   ),
   Product(
-    image: 'image1.png',
+    image: 'anh1.png',
     title: 'Regular fit nike',
     size: 'L',
     price: 1190,
     quantity: 1,
   ),
   Product(
-    image: 'image3.png',
+    image: 'anh2.png',
     title: 'Regular fit big size',
     size: 'S',
     price: 1599,
     quantity: 1,
   ),
   Product(
-    image: 'image2.png',
+    image: 'anh2.png',
     title: 'Regular fit polo',
     size: 'M',
     price: 1170,
     quantity: 1,
   ),
   Product(
-    image: 'image4.png',
+    image: 'anh4.png',
     title: 'Regular fit v-neck',
     size: 'M',
     price: 1199,
@@ -73,3 +73,64 @@ List<Product> listProductFake = [
   ),
 
 ];
+
+List<Product> listProductCart = [
+  Product(
+    image: 'ig1.png',
+    title: 'Regular fit slogan',
+    size: 'L',
+    price: 1190,
+    quantity: 1,
+  ),
+  Product(
+    image: 'ig2.png',
+    title: 'Regular fit polo',
+    size: 'M',
+    price: 1170,
+    quantity: 1,
+  ),
+  Product(
+    image: 'ig3.png',
+    title: 'Regular fit color block',
+    size: 'S',
+    price: 1366,
+    quantity: 1,
+  ),
+  Product(
+    image: 'ig2.png',
+    title: 'Regular fit v-neck',
+    size: 'M',
+    price: 1199,
+    quantity: 1,
+  ),
+  Product(
+    image: 'ig1.png',
+    title: 'Regular fit nike',
+    size: 'L',
+    price: 1190,
+    quantity: 1,
+  ),
+  Product(
+    image: 'ig3.png',
+    title: 'Regular fit big size',
+    size: 'S',
+    price: 1599,
+    quantity: 1,
+  ),
+  Product(
+    image: 'ig1.png',
+    title: 'Regular fit polo',
+    size: 'M',
+    price: 1170,
+    quantity: 1,
+  ),
+  Product(
+    image: 'ig3.png',
+    title: 'Regular fit v-neck',
+    size: 'M',
+    price: 1199,
+    quantity: 1,
+  ),
+
+];
+

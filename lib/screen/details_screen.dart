@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/screen/my_cart_screen.dart';
+import 'package:flutter_svg/svg.dart';
 
 class Details extends StatefulWidget {
   const Details({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Expanded(
@@ -39,10 +41,9 @@ class _DetailsState extends State<Details> {
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child: SizedBox(
+                          child: SvgPicture.asset(
                             width: 24,
-                            height: 24,
-                            child: Image.asset('assets/images/right.png'),
+                            'assets/icons/back.svg',
                           ),
                         ),
                         Expanded(child: Container()),
@@ -55,11 +56,9 @@ class _DetailsState extends State<Details> {
                           textAlign: TextAlign.center,
                         ),
                         Expanded(child: Container()),
-                        SizedBox(
+                        SvgPicture.asset(
                           width: 24,
-                          height: 24,
-                          child:
-                              Image.asset('assets/images/iconnotification.png'),
+                          'assets/icons/notification.svg',
                         ),
                       ],
                     ),
@@ -124,7 +123,7 @@ class _DetailsState extends State<Details> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 15),
                     const Text(
                       'Choose size',
                       style: TextStyle(
@@ -133,7 +132,7 @@ class _DetailsState extends State<Details> {
                         fontSize: 24,
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         GestureDetector(
@@ -245,9 +244,11 @@ class _DetailsState extends State<Details> {
             ),
           ),
           SizedBox(
-            height: 90,
+            height: 101,
             child: Container(
-              color: const Color(0XFFFFFFFF),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+              ),
               child: Padding(
                 padding: const EdgeInsets.only(
                   left: 25,

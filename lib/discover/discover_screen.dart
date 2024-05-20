@@ -1,8 +1,15 @@
 import 'package:ecommerce_app/model/product.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/screen/details_screen.dart';
-import 'package:ecommerce_app/screen/login_screen.dart';
+import 'package:ecommerce_app/login/login_screen.dart';
 import 'package:ecommerce_app/screen/my_cart_screen.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import '../login/bloc/login_bloc.dart';
+import 'bloc/discover_bloc.dart';
+import 'bloc/discover_event.dart';
+import 'bloc/discover_state.dart';
 
 class Discover extends StatefulWidget {
   const Discover({Key? key}) : super(key: key);
@@ -13,7 +20,15 @@ class Discover extends StatefulWidget {
 
 class _DiscoverState extends State<Discover> {
   int selectedIndex = 0;
-  List<String> listCategory = ['All', 'Men', 'Women', 'Kids'];
+  // ignore: prefer_typing_uninitialized_variables
+  late final discoverBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    discoverBloc = context.read<DiscoverBloc>();
+    discoverBloc.add(const InitialEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +52,9 @@ class _DiscoverState extends State<Discover> {
                   ),
                 ),
                 Expanded(child: Container()),
-                SizedBox(
+                SvgPicture.asset(
                   width: 24,
-                  height: 24,
-                  child: Image.asset('assets/images/iconnotification.png'),
+                  'assets/icons/notification.svg',
                 ),
               ],
             ),
@@ -48,25 +62,25 @@ class _DiscoverState extends State<Discover> {
             Row(
               children: [
                 Container(
-                  width: 289,
+                  width:  MediaQuery.of(context).size.width * 0.73,
                   height: 53,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.black12,
+                    color:  const Color(0XFF000000).withOpacity(0.05),
                   ),
-                  child: const TextField(
+                  child:  TextField(
                     decoration: InputDecoration(
                       hintText: 'Search anything',
                       border: InputBorder.none,
                       isDense: true,
-                      contentPadding: EdgeInsets.all(15),
-                      hintStyle: TextStyle(fontSize: 18, color: Colors.black38),
-                      prefixIcon: Icon(Icons.search_outlined, size: 27),
+                      contentPadding: const EdgeInsets.all(15),
+                      hintStyle: TextStyle(fontSize: 18, color: const Color(0XFF000000).withOpacity(0.6)),
+                      prefixIcon: const Icon(Icons.search_outlined, size: 27),
                     ),
-                    style: TextStyle(fontSize: 17),
+                    style: const TextStyle(fontSize: 17),
                   ),
                 ),
-                Expanded(child: Container()),
+              Expanded(child: Container()),
                 SizedBox(
                   width: 53,
                   height: 53,
@@ -75,50 +89,55 @@ class _DiscoverState extends State<Discover> {
               ],
             ),
             const SizedBox(height: 16),
-            SizedBox(
-              height: 38,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: listCategory.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final title = listCategory[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 12),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          selectedIndex = index;
-                        });
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                          index == selectedIndex
-                              ? Colors.black
-                              : const Color(0XFFF2F2F2),
+            BlocBuilder<DiscoverBloc, LoginState>(builder: (context, state) {
+              return SizedBox(
+                height: 38,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: state.listOptions.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final title = state.listOptions[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 12),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            selectedIndex = index;
+                          });
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            index == selectedIndex
+                                ? Colors.black
+                                : const Color(0XFFF2F2F2),
+                          ),
+                          minimumSize: MaterialStateProperty.all<Size>(
+                              const Size(79, 38)),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              side: BorderSide.none,
+                            ),
+                          ),
+                          shadowColor: MaterialStateProperty.all<Color>(
+                              Colors.transparent),
                         ),
-                        minimumSize:
-                            MaterialStateProperty.all<Size>(const Size(79, 38)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                            fontSize: 17,
+                            color: index == selectedIndex
+                                ? Colors.white
+                                : Colors.black,
                           ),
                         ),
                       ),
-                      child: Text(
-                        title,
-                        style: TextStyle(
-                          fontSize: 17,
-                          color: index == selectedIndex
-                              ? Colors.white
-                              : Colors.black,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
+                    );
+                  },
+                ),
+              );
+            }),
             const SizedBox(height: 27),
             Expanded(
               child: GridView.builder(
@@ -147,7 +166,13 @@ class _DiscoverState extends State<Discover> {
       bottomNavigationBar: Container(
         width: double.infinity,
         height: 90,
-        color: Colors.white,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(
+            color: Colors.grey,
+            width: 1,
+          ),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -177,7 +202,12 @@ class _DiscoverState extends State<Discover> {
               () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider(
+                      create: (BuildContext context) => LoginBloc(),
+                      child: const LoginScreen(),
+                    ),
+                  ),
                 );
               },
             ),

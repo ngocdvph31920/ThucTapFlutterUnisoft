@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/model/product.dart';
-import 'package:ecommerce_app/screen/login_screen.dart';
+import 'package:ecommerce_app/login/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class MyCart extends StatefulWidget {
   const MyCart({super.key});
@@ -13,6 +14,7 @@ class _MyCartState extends State<MyCart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Expanded(
@@ -32,10 +34,9 @@ class _MyCartState extends State<MyCart> {
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child: SizedBox(
+                          child:SvgPicture.asset(
                             width: 24,
-                            height: 24,
-                            child: Image.asset('assets/images/right.png'),
+                            'assets/icons/back.svg',
                           ),
                         ),
                         Expanded(child: Container()),
@@ -48,11 +49,9 @@ class _MyCartState extends State<MyCart> {
                           textAlign: TextAlign.center,
                         ),
                         const Spacer(),
-                        SizedBox(
+                        SvgPicture.asset(
                           width: 24,
-                          height: 24,
-                          child:
-                              Image.asset('assets/images/iconnotification.png'),
+                          'assets/icons/notification.svg',
                         ),
                       ],
                     ),
@@ -62,10 +61,11 @@ class _MyCartState extends State<MyCart> {
                       width: MediaQuery.of(context).size.width,
                       height: 365,
                       child: ListView.builder(
+                        padding: EdgeInsets.zero,
                         scrollDirection: Axis.vertical,
                         itemCount: listProductFake.length,
                         itemBuilder: (BuildContext context, int index) {
-                          final cart = listProductFake[index];
+                          final cart = listProductCart[index];
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 17),
                             child: Container(
@@ -84,7 +84,7 @@ class _MyCartState extends State<MyCart> {
                                     height: 89,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(color: Colors.black12),
+                                      border: Border.all(color:  const Color(0XFF000000).withOpacity(0.05)),
                                     ),
                                     child: Image.asset(
                                       'assets/images/${cart.image}',
@@ -92,8 +92,7 @@ class _MyCartState extends State<MyCart> {
                                   ),
                                   const SizedBox(width: 17),
                                   Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         ' ${cart.title}',
@@ -121,6 +120,8 @@ class _MyCartState extends State<MyCart> {
                                       ),
                                     ],
                                   ),
+
+
                                   Expanded(child: Container()),
                                   Column(
                                     children: [
@@ -140,7 +141,7 @@ class _MyCartState extends State<MyCart> {
                                               borderRadius:
                                                   BorderRadius.circular(4),
                                               border: Border.all(
-                                                color: Colors.black,
+                                                color: const Color(0XFF000000).withOpacity(0.2),
                                               ),
                                             ),
                                             alignment: Alignment.center,
@@ -169,7 +170,7 @@ class _MyCartState extends State<MyCart> {
                                               borderRadius:
                                                   BorderRadius.circular(4),
                                               border: Border.all(
-                                                color: Colors.black,
+                                                color: const Color(0XFF000000).withOpacity(0.2),
                                               ),
                                             ),
                                             alignment: Alignment.center,
@@ -198,18 +199,18 @@ class _MyCartState extends State<MyCart> {
                       height: 53,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.black12,
+                        color:  const Color(0XFF000000).withOpacity(0.05),
                       ),
-                      child: const TextField(
+                      child:  TextField(
                         decoration: InputDecoration(
                           hintText: 'Add a voucher',
                           border: InputBorder.none,
                           isDense: true,
-                          contentPadding: EdgeInsets.all(15),
+                          contentPadding: const EdgeInsets.all(15),
                           hintStyle:
-                              TextStyle(fontSize: 17, color: Colors.black38),
+                              TextStyle(fontSize: 17, color:  const Color(0XFF000000).withOpacity(0.6)),
                         ),
-                        style: TextStyle(fontSize: 17),
+                        style: const TextStyle(fontSize: 17),
                       ),
                     ),
                     const SizedBox(height: 35),
@@ -315,16 +316,11 @@ class _MyCartState extends State<MyCart> {
             ),
           ),
           SizedBox(
-            height: 1,
-            width: double.infinity,
+            height: 101,
             child: Container(
-              color: Colors.black54,
-            ),
-          ),
-          SizedBox(
-            height: 90,
-            child: Container(
-              color: const Color(0XFFFFFFFF),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+              ),
               child: Padding(
                 padding: const EdgeInsets.only(
                   left: 25,
@@ -341,28 +337,40 @@ class _MyCartState extends State<MyCart> {
                       );
                     },
                     style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.black),
-                      minimumSize:
-                          MaterialStateProperty.all<Size>(const Size(341, 58)),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                      minimumSize: MaterialStateProperty.all<Size>(const Size(341, 58)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
+                      shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
                     ),
-                    child: const Text(
-                      "Checkout ->",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Checkout",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 15),
+                          child: Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
             ),
           ),
+
         ],
       ),
     );
