@@ -75,7 +75,7 @@ class _MyCartState extends State<MyCart> {
                       child: ListView.builder(
                         padding: EdgeInsets.zero,
                         scrollDirection: Axis.vertical,
-                        itemCount: listProductFake.length,
+                        itemCount: listProductCart.length,
                         itemBuilder: (BuildContext context, int index) {
                           final cart = listProductCart[index];
                           return Padding(
@@ -95,7 +95,9 @@ class _MyCartState extends State<MyCart> {
                                     height: 79,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(color: const Color(0XFF000000).withOpacity(0.05)),
+                                      border: Border.all(
+                                        color: const Color(0XFF000000).withOpacity(0.05),
+                                      ),
                                     ),
                                     child: Image.asset(
                                       'assets/images/${cart.image}',
@@ -106,7 +108,7 @@ class _MyCartState extends State<MyCart> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        ' ${cart.title}',
+                                        cart.title,
                                         style: const TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w500,
@@ -132,68 +134,87 @@ class _MyCartState extends State<MyCart> {
                                     ],
                                   ),
                                   Expanded(child: Container()),
-                                  Column(
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
                                     children: [
-                                      SizedBox(
-                                        width: 16,
-                                        height: 16,
-                                        child: Image.asset(
-                                            'assets/images/trash03.png'),
+                                      GestureDetector(
+                                        onTap: () {
+
+                                        },
+                                        child: SvgPicture.asset(
+                                          'assets/icons/delete.svg',
+                                          width: 16,
+                                        ),
                                       ),
-                                      const SizedBox(height: 39),
-                                      Row(
-                                        children: [
-                                          Container(
-                                            width: 22,
-                                            height: 22,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(4),
-                                              border: Border.all(
-                                                color: const Color(0XFF000000).withOpacity(0.2),
-                                              ),
-                                            ),
-                                            alignment: Alignment.center,
-                                            child: const Text(
-                                              '-',
-                                              style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                      const SizedBox(width: 5),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          // Decrease quantity functionality
+                                        },
+                                        child: Container(
+                                          width: 22,
+                                          height: 22,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(4),
+                                            border: Border.all(
+                                              color: const Color(0XFF000000).withOpacity(0.2),
                                             ),
                                           ),
-                                          const SizedBox(width: 10),
-                                          Text(
-                                            '${cart.quantity}',
-                                            style: const TextStyle(
-                                              color: Colors.black,
+                                          alignment: Alignment.center,
+                                          child: const Text(
+                                            '-',
+                                            style: TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          const SizedBox(width: 10),
-                                          Container(
-                                            width: 22,
-                                            height: 22,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(4),
-                                              border: Border.all(
-                                                color: const Color(0XFF000000).withOpacity(0.2),
-                                              ),
-                                            ),
-                                            alignment: Alignment.center,
-                                            child: const Text(
-                                              '+',
-                                              style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Text(
+                                        '${cart.quantity}',
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      GestureDetector(
+                                        onTap: () {
+                                          // Increase quantity functionality
+                                        },
+                                        child: Container(
+                                          width: 22,
+                                          height: 22,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(4),
+                                            border: Border.all(
+                                              color: const Color(0XFF000000).withOpacity(0.2),
                                             ),
                                           ),
-                                        ],
+                                          alignment: Alignment.center,
+                                          child: const Text(
+                                            '+',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
                                 ],
+                              ),
+
+                              ],
                               ),
                             ),
                           );
@@ -225,10 +246,10 @@ class _MyCartState extends State<MyCart> {
                     const SizedBox(height: 30),
                     Row(
                       children: [
-                         Text(
+                        Text(
                           'Sub-total',
                           style: TextStyle(
-                            color:const Color(0XFF000000).withOpacity(0.6),
+                            color: const Color(0XFF000000).withOpacity(0.6),
                             fontSize: 17,
                             fontWeight: FontWeight.w500,
                           ),
@@ -250,7 +271,7 @@ class _MyCartState extends State<MyCart> {
                         Text(
                           'VAT (%)',
                           style: TextStyle(
-                            color:const Color(0XFF000000).withOpacity(0.6),
+                            color: const Color(0XFF000000).withOpacity(0.6),
                             fontSize: 17,
                             fontWeight: FontWeight.w500,
                           ),
@@ -327,7 +348,9 @@ class _MyCartState extends State<MyCart> {
             height: 101,
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color:const Color(0XFF000000).withOpacity(0.2)),
+                border: Border.all(
+                  color: const Color(0XFF000000).withOpacity(0.2),
+                ),
               ),
               child: Padding(
                 padding: const EdgeInsets.only(

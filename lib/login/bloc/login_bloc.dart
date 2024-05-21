@@ -21,7 +21,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       print('Thành công');
     } else {
       emit(state.checklogin(status: 'KO'));
-      print('Thất bại');
+      print('Đăng nhập thất bại');
     }
   }
 }
