@@ -99,7 +99,6 @@ flutter:
         - asset: assets/Fonts/OTF/GeneralSans-Bold.otf
         - asset: assets/Fonts/OTF/GeneralSans-BoldItalic.otf
         - asset: assets/Fonts/OTF/GeneralSans-Extralight.otf
-        - asset: assets/Fonts/OTF/GeneralSans-ExtralightItalic.otf
         - asset: assets/Fonts/OTF/GeneralSans-Italic.otf
         - asset: assets/Fonts/OTF/GeneralSans-Light.otf
         - asset: assets/Fonts/OTF/GeneralSans-LightItalic.otf

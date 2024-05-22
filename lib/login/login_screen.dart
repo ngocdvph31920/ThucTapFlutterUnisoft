@@ -203,31 +203,42 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Stack(
                               alignment: Alignment.centerRight,
                               children: [
-                                TextField(
-                                  controller: passwordController,
-                                  decoration: InputDecoration(
-                                    hintText: 'Enter your password',
-                                    border: InputBorder.none,
-                                    isDense: true,
-                                    contentPadding: const EdgeInsets.all(15),
-                                    hintStyle: TextStyle(
-                                      fontSize: 18,
-                                      color: const Color(0XFF000000).withOpacity(0.6),
+                                // TextField with Positioned widget
+                                Positioned(
+                                  left: 0, // Position TextField to the left
+                                  right: 40, // Leave space for the eye icon
+                                  child: TextField(
+                                    controller: passwordController,
+                                    obscureText: true,
+                                    decoration: InputDecoration(
+                                      hintText: 'Enter your password',
+                                      border: InputBorder.none,
+                                      isDense: true,
+                                      contentPadding: const EdgeInsets.all(15),
+                                      hintStyle: TextStyle(
+                                        fontSize: 18,
+                                        color: const Color(0XFF000000).withOpacity(0.6),
+                                      ),
                                     ),
+                                    style: const TextStyle(fontSize: 17),
                                   ),
-                                  style: const TextStyle(fontSize: 17),
                                 ),
+                                // GestureDetector with Positioned widget
                                 Positioned(
                                   right: 15,
-                                  child: SvgPicture.asset(
-                                    'assets/icons/eye.svg',
-                                    width: 24,
+                                  child: GestureDetector(
+                                    onTap: () {
+
+                                    },
+                                    child: SvgPicture.asset(
+                                      'assets/icons/eye.svg',
+                                      width: 24,
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
-                          )
-
+                          ),
                         ],
                       ),
                     ],
